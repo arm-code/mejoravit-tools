@@ -9,9 +9,14 @@ export const calculatorSchema = z.object({
         message: "El plazo es requerido y debe ser un número"
     }).int().min(1, 'Plazo mínimo: 1 año').max(30, 'Plazo máximo: 30 años'),
 
-    requiereRegularizacion: z.boolean({
-        message: "Debe seleccionar una opción"
-    }),
+    // Los radio buttons emiten strings ("true"/"false").
+    // z.coerce.boolean() no funciona para strings, así que usamos un pipeline.
+    requiereRegularizacion: z
+        .union([z.boolean(), z.enum(["true", "false"])])
+        .transform((v) => v === true || v === "true"),
 })
 
-export type CalculatorSchema = z.infer<typeof calculatorSchema>;
+// Tipo de los valores del formulario (antes de la transformación de Zod)
+export type CalculatorInputSchema = z.input<typeof calculatorSchema>;
+// Tipo de los valores tras la transformación (lo que llega a onSubmit)
+export type CalculatorSchema = z.output<typeof calculatorSchema>;

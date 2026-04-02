@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import type { MejoravitState, CreditConditions, CalculatorFormValues } from "@/features/mejoravit/types/mejoravit.types";
+import type { MejoravitState, CreditConditions, CalculatorFormValues, UserInfo } from "@/features/mejoravit/types/mejoravit.types";
 import { setItem, getItem } from "@/shared/utils/storage";
 
 const STORAGE_KEY = "mejoravit_state";
 
 const defaultState: MejoravitState = {
-    user: { nss: "48068619054", rfc: "RORR860708LE3", nombre: "DE LA ROSA RAMIREZ RAUL" },
-    form: { valorMejora: 163030.21, plazo: 10, requiereRegularizacion: false },
+    user: null,
+    form: { valorMejora: 0, plazo: 5, requiereRegularizacion: false },
     results: null,
 };
 
@@ -14,6 +14,8 @@ interface MejoravitContextType {
     state: MejoravitState;
     setResults: (results: CreditConditions) => void;
     updateForm: (form: CalculatorFormValues) => void;
+    updateUser: (user: UserInfo) => void;
+    clearUser: () => void;
     reset: () => void;
 }
 
@@ -40,13 +42,30 @@ export function MejoravitProvider({ children }: { children: ReactNode }) {
         });
     };
 
+    const updateUser = (user: UserInfo) => {
+        setState((prev) => {
+            const next = { ...prev, user };
+            setItem(STORAGE_KEY, next);
+            return next;
+        });
+    };
+
+    // "Salir": limpia solo el usuario, conserva form y results
+    const clearUser = () => {
+        setState((prev) => {
+            const next = { ...prev, user: null };
+            setItem(STORAGE_KEY, next);
+            return next;
+        });
+    };
+
     const reset = () => {
         setState(defaultState);
         setItem(STORAGE_KEY, defaultState);
     };
 
     return (
-        <MejoravitContext.Provider value={{ state, setResults, updateForm, reset }}>
+        <MejoravitContext.Provider value={{ state, setResults, updateForm, updateUser, clearUser, reset }}>
             {children}
         </MejoravitContext.Provider>
     );
