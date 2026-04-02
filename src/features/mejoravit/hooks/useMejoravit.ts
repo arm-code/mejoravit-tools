@@ -1,15 +1,25 @@
 import { useMejoravitContext } from "../context/MejoravitContext";
 import type { CalculatorFormValues, CreditConditions } from "../types/mejoravit.types";
 
-const TASA_INTERES = 0.10;
+// Tasas de interés fijas por plazo (anual)
+// TODO: confirmar tasas para 15 y 20 años
+const TASAS_POR_PLAZO: Record<number, number> = {
+    5: 0.10, // 10%
+    10: 0.11, // 11%   
+};
+
+function getTasaAnual(plazo: number): number {
+    return TASAS_POR_PLAZO[plazo] ?? 0.10; // fallback al 10%
+}
 
 function calcularCredito(
     valorMejora: number,
     plazo: number,
     requiereRegularizacion: boolean
 ): CreditConditions {
+    const tasaAnual = getTasaAnual(plazo);
     const meses = plazo * 12;
-    const tasaMensual = TASA_INTERES / 12;
+    const tasaMensual = tasaAnual / 12;
 
     // Fórmula de amortización francesa
     const retencionMensual =
@@ -21,7 +31,7 @@ function calcularCredito(
         montoCredito: valorMejora,
         montoRegularizacion,
         retencionMensual: Math.round(retencionMensual * 100) / 100,
-        tasaInteres: TASA_INTERES * 100,
+        tasaInteres: tasaAnual * 100,
     };
 }
 

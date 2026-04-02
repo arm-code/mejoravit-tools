@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { calculatorSchema, type CalculatorInputSchema, type CalculatorSchema } from "../schemas/mejoravit.schema";
 import { useMejoravit } from "../hooks/useMejoravit";
 
-const PLAZOS = [5, 10, 15, 20];
+const PLAZOS = [5, 10];
 
 export function CalculatorForm() {
     const { form, calcular } = useMejoravit();
