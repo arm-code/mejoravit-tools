@@ -2,14 +2,13 @@ import { useMejoravitContext } from "../context/MejoravitContext";
 import type { CalculatorFormValues, CreditConditions } from "../types/mejoravit.types";
 
 // Tasas de interés fijas por plazo (anual)
-// TODO: confirmar tasas para 15 y 20 años
 const TASAS_POR_PLAZO: Record<number, number> = {
     5: 0.10, // 10%
-    10: 0.11, // 11%   
+    10: 0.11, // 11%
 };
 
 function getTasaAnual(plazo: number): number {
-    return TASAS_POR_PLAZO[plazo] ?? 0.10; // fallback al 10%
+    return TASAS_POR_PLAZO[plazo] ?? 0.10;
 }
 
 function calcularCredito(
@@ -36,7 +35,7 @@ function calcularCredito(
 }
 
 export function useMejoravit() {
-    const { state, setResults, updateForm, reset } = useMejoravitContext();
+    const { state, setResults, updateForm, updateUser, clearUser, reset } = useMejoravitContext();
 
     const calcular = (values: CalculatorFormValues) => {
         updateForm(values);
@@ -53,6 +52,8 @@ export function useMejoravit() {
         form: state.form,
         results: state.results,
         calcular,
+        updateUser,
+        clearUser,
         reset,
     };
 }

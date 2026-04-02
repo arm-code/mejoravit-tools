@@ -18,7 +18,7 @@ export interface CreditConditions {
 }
 
 export interface MejoravitState {
-    user: UserInfo;
+    user: UserInfo | null;
     form: CalculatorFormValues;
     results: CreditConditions | null;
 }
