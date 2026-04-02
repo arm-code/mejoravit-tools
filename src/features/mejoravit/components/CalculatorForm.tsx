@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { calculatorSchema, type CalculatorSchema } from "../schemas/mejoravit.schema";
+import { calculatorSchema, type CalculatorInputSchema, type CalculatorSchema } from "../schemas/mejoravit.schema";
 import { useMejoravit } from "../hooks/useMejoravit";
 
 const PLAZOS = [5, 10, 15, 20];
@@ -8,12 +8,21 @@ const PLAZOS = [5, 10, 15, 20];
 export function CalculatorForm() {
     const { form, calcular } = useMejoravit();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<CalculatorSchema>({
+    const { register, handleSubmit, formState: { errors } } = useForm<CalculatorInputSchema, unknown, CalculatorSchema>({
         resolver: zodResolver(calculatorSchema),
-        defaultValues: form,
+        defaultValues: {
+            valorMejora: form.valorMejora,
+            plazo: form.plazo,
+            // String para que coincida con value="false" del radio → Zod lo transforma a boolean
+            requiereRegularizacion: form.requiereRegularizacion ? "true" : "false",
+        },
     });
 
-    const onSubmit = (data: CalculatorSchema) => calcular(data);
+    const onSubmit = (data: CalculatorSchema) => {
+        console.log("📤 onSubmit ejecutado con:", data);
+        calcular(data);
+    };
+
 
     return (
         <div className="border border-gray-200 rounded-xl p-6 bg-gray-100 shadow-sm">
@@ -27,7 +36,7 @@ export function CalculatorForm() {
                             type="number"
                             step="0.01"
                             {...register("valorMejora", { valueAsNumber: true })}
-                            className="border rounded-md px-3  py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-red-400"
+                            className="border rounded-md px-3 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-red-400"
                         />
                         {errors.valorMejora && (
                             <span className="text-xs text-red-500">{errors.valorMejora.message}</span>
@@ -45,6 +54,9 @@ export function CalculatorForm() {
                                 <option key={p} value={p}>{p}</option>
                             ))}
                         </select>
+                        {errors.plazo && (
+                            <span className="text-xs text-red-500">{errors.plazo.message}</span>
+                        )}
                     </div>
 
                     <button
@@ -65,17 +77,17 @@ export function CalculatorForm() {
                             <label key={val} className="flex items-center gap-2 text-sm cursor-pointer">
                                 <input
                                     type="radio"
-                                    defaultChecked={val === "false"}
                                     value={val}
-                                    {...register("requiereRegularizacion", {
-                                        setValueAs: (v) => v === "true",
-                                    })}
+                                    {...register("requiereRegularizacion")}
                                     className="accent-blue-600"
                                 />
                                 {val === "true" ? "Sí" : "No"}
                             </label>
                         ))}
                     </div>
+                    {errors.requiereRegularizacion && (
+                        <span className="text-xs text-red-500">{errors.requiereRegularizacion.message}</span>
+                    )}
                 </div>
             </form>
         </div>
