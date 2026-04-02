@@ -19,15 +19,15 @@ export function CalculatorForm() {
         <div className="border border-gray-200 rounded-xl p-6 bg-gray-100 shadow-sm">
             <h2 className="font-bold text-lg mb-4">Condiciones</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div className="flex gap-4 items-start">
+                <div className="flex flex-col md:flex-row gap-4 items-start">
                     {/* Valor de la mejora */}
-                    <div className="flex flex-col gap-1 flex-1">
+                    <div className="flex flex-col gap-1 w-full md:w-auto">
                         <label className="text-sm text-gray-500">Valor de la mejora:</label>
                         <input
                             type="number"
                             step="0.01"
                             {...register("valorMejora", { valueAsNumber: true })}
-                            className="border rounded-md px-3 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-red-400"
+                            className="border rounded-md px-3  py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-red-400"
                         />
                         {errors.valorMejora && (
                             <span className="text-xs text-red-500">{errors.valorMejora.message}</span>
@@ -35,7 +35,7 @@ export function CalculatorForm() {
                     </div>
 
                     {/* Plazo */}
-                    <div className="flex flex-col gap-1 w-36">
+                    <div className="flex flex-col gap-1 w-full md:w-[100px]">
                         <label className="text-sm text-gray-500">Plazo:</label>
                         <select
                             {...register("plazo", { valueAsNumber: true })}
@@ -49,7 +49,7 @@ export function CalculatorForm() {
 
                     <button
                         type="submit"
-                        className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-semibold transition-colors"
+                        className="mt-6 w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-semibold transition-colors cursor-pointer"
                     >
                         Calcular
                     </button>
@@ -65,6 +65,7 @@ export function CalculatorForm() {
                             <label key={val} className="flex items-center gap-2 text-sm cursor-pointer">
                                 <input
                                     type="radio"
+                                    defaultChecked={val === "false"}
                                     value={val}
                                     {...register("requiereRegularizacion", {
                                         setValueAs: (v) => v === "true",
