@@ -1,7 +1,7 @@
 import { useMejoravitContext } from "../context/MejoravitContext";
 import type { CalculatorFormValues, CreditConditions } from "../types/mejoravit.types";
 
-const TASA_INTERES = 0.11;
+const TASA_INTERES = 0.10;
 
 function calcularCredito(
     valorMejora: number,
