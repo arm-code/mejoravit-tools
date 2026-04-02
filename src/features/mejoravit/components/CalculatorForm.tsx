@@ -16,7 +16,7 @@ export function CalculatorForm() {
     const onSubmit = (data: CalculatorSchema) => calcular(data);
 
     return (
-        <div className="border rounded-xl p-6 bg-white shadow-sm">
+        <div className="border border-gray-200 rounded-xl p-6 bg-gray-100 shadow-sm">
             <h2 className="font-bold text-lg mb-4">Condiciones</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className="flex gap-4 items-start">
