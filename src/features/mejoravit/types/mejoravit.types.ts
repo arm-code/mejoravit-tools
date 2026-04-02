@@ -4,9 +4,9 @@ export interface UserInfo {
     nombre: string;
 }
 
-export interface CalculadoraFormValues {
+export interface CalculatorFormValues {
     valorMejora: number;
-    plazo:  number;
+    plazo: number;
     requiereRegularizacion: boolean;
 }
 
@@ -19,6 +19,6 @@ export interface CreditConditions {
 
 export interface MejoravitState {
     user: UserInfo;
-    form: CalculadoraFormValues;
+    form: CalculatorFormValues;
     results: CreditConditions | null;
 }
