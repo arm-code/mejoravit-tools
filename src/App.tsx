@@ -1,15 +1,17 @@
+import { MejoravitPage } from "./features/mejoravit/components/MejoravitPage"
+import { MejoravitProvider } from "./features/mejoravit/context/MejoravitContext"
 
 
 
 
 function App() {
-  
+
 
   return (
-    <>
-    <h1>Mejoravit solo para ti</h1>
-      
-    </>
+    <MejoravitProvider>
+      <MejoravitPage />
+
+    </MejoravitProvider>
   )
 }
 
