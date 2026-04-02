@@ -10,7 +10,7 @@ export function MejoravitPage() {
         <div className="min-h-screen bg-gray-50">
 
             <header className="flex items-center justify-between px-6 py-4 bg-white border-b">
-                <h1 className="text-red-600 font-bold text-xl">Mejoravit solo para ti</h1>
+                <h1 className="text-red-600 font-extrabold text-xl">Mejoravit solo para ti</h1>
                 <button className="text-blue-500 text-sm hover:underline">Salir</button>
             </header>
 
