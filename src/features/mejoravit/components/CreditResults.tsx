@@ -16,12 +16,12 @@ export function CreditResults() {
 
     return (
         <div className="mt-6">
-            <h2 className="font-bold text-lg mb-4 ">Estas serían tus condiciones de crédito:</h2>
-            <div className="divide-y divide-gray-200">
+            <h2 className="font-extrabold text-lg mb-4 text-text-primary">Estas serían tus condiciones de crédito:</h2>
+            <div className="">
                 {rows.map(({ label, value }) => (
-                    <div key={label} className="flex flex-col md:flex-row md:justify-between md:items-center py-3 gap-0.5 md:gap-0">
-                        <span className="text-sm md:text-lg text-gray-600 md:text-black leading-snug">{label}</span>
-                        <span className="font-extrabold text-xl md:text-lg text-black">{value}</span>
+                    <div key={label} className="flex justify-between items-center py-3 gap-2">
+                        <span className="text-sm sm:text-base text-text-primary leading-snug">{label}</span>
+                        <span className="font-extrabold text-base sm:text-lg text-text-primary text-right shrink-0">{value}</span>
                     </div>
                 ))}
             </div>
