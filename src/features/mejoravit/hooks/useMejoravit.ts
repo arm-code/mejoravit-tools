@@ -54,6 +54,7 @@ export function useMejoravit() {
         calcular,
         updateUser,
         clearUser,
+        updateForm,
         reset,
     };
 }
