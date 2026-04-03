@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CalculatorForm } from "./CalculatorForm";
-import { CreditResults } from "./CreditResults";
-import { DisclaimerBanner } from "./DisclaimerBanner";
+import { useNavigate } from "react-router-dom";
+import { CalculatorForm } from "../components/CalculatorForm";
+import { CreditResults } from "../components/CreditResults";
+import { DisclaimerBanner } from "../components/DisclaimerBanner";
 import { useMejoravit } from "../hooks/useMejoravit";
 import { userSchema, type UserSchema } from "../schemas/user.schema";
 
 export function MejoravitPage() {
     const { user, updateUser, clearUser } = useMejoravit();
     const [editando, setEditando] = useState(false);
+    const navigate = useNavigate();
 
     const {
         register,
@@ -50,6 +52,7 @@ export function MejoravitPage() {
     const handleSalir = () => {
         clearUser();
         setEditando(false);
+        navigate("/");
     };
 
     // Mostrar formulario si no hay usuario o si está editando
@@ -61,7 +64,7 @@ export function MejoravitPage() {
                 <h1 className="text-primary font-bold text-2xl sm:text-3xl md:text-4xl tracking-tighter">
                     Mejoravit solo para ti
                 </h1>
-                {user && !editando && (
+                {!editando && (
                     <button
                         onClick={handleSalir}
                         className="text-blue-500 text-sm hover:underline underline font-bold shrink-0 ml-4"
