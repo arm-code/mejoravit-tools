@@ -157,9 +157,9 @@ export function MejoravitPage() {
                     /* Vista de datos en modo lectura con botón Editar muy discreto */
                     <div className="flex items-start justify-between gap-4">
                         <div className="flex flex-col gap-0.5">
-                            <p className="text-text-primary font-bold text-sm sm:text-base">N.S.S.: {user!.nss}</p>
-                            <p className="text-text-primary font-bold text-sm sm:text-base">R.F.C.: {user!.rfc}</p>
-                            <p className="text-text-primary font-bold text-sm sm:text-base">Nombre: {user!.nombre}</p>
+                            <p className="text-text-primary font-extrabold text-sm sm:text-base">N.S.S.: {user!.nss}</p>
+                            <p className="text-text-primary font-extrabold text-sm sm:text-base">R.F.C.: {user!.rfc}</p>
+                            <p className="text-text-primary font-extrabold text-sm sm:text-base">Nombre: {user!.nombre}</p>
                         </div>
                         {/* Botón editar: lo más discreto posible */}
                         <button

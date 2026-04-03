@@ -26,11 +26,11 @@ export function CalculatorForm() {
 
     return (
         <div className="border border-border-soft rounded-xl p-6 bg-bg-light shadow-sm">
-            <h2 className="font-bold text-lg mb-4">Condiciones</h2>
+            <h2 className="font-extrabold text-lg mb-4">Condiciones</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div className="flex flex-wrap md:flex-nowrap gap-4 items-end">
+                <div className="flex flex-row md:flex-nowrap gap-2 items-end">
                     {/* Valor de la mejora */}
-                    <div className="flex flex-col gap-1 w-full md:w-auto flex-1 md:flex-none">
+                    <div className="flex flex-col gap-1 w-[200px] md:flex-none">
                         <label className="text-sm text-text-primary font-semibold">Valor de la mejora:</label>
                         <input
                             type="number"
@@ -44,7 +44,7 @@ export function CalculatorForm() {
                     </div>
 
                     {/* Plazo */}
-                    <div className="flex flex-col gap-1 w-[40%] md:w-[100px] shrink-0">
+                    <div className="flex flex-col gap-1 w-[150px] shrink-0">
                         <label className="text-sm text-text-primary font-semibold">Plazo:</label>
                         <select
                             {...register("plazo", { valueAsNumber: true })}
@@ -61,7 +61,7 @@ export function CalculatorForm() {
 
                     <button
                         type="submit"
-                        className="w-full md:w-auto bg-blue-btn hover:opacity-90 text-white px-6 py-2 rounded-lg text-sm font-semibold transition-colors cursor-pointer"
+                        className=" md:w-auto bg-blue-btn hover:opacity-90 text-white px-6 py-2 rounded-2xl text-sm font-semibold transition-colors cursor-pointer"
                     >
                         Calcular
                     </button>
