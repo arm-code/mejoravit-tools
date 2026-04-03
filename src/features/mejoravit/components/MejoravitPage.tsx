@@ -95,6 +95,7 @@ export function MejoravitPage() {
                                     inputMode="numeric"
                                     maxLength={11}
                                     placeholder="Ej. 61088604741"
+                                    onFocus={(e) => e.target.select()}
                                     {...register("nss")}
                                     className="border border-border-soft rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-btn w-full sm:max-w-xs"
                                 />
@@ -115,6 +116,7 @@ export function MejoravitPage() {
                                     type="text"
                                     maxLength={13}
                                     placeholder="Ej. CAMJ8606234G5"
+                                    onFocus={(e) => e.target.select()}
                                     {...register("rfc")}
                                     className="border border-border-soft rounded-md px-3 py-1.5 text-sm uppercase focus:outline-none focus:ring-2 focus:ring-blue-btn w-full sm:max-w-xs"
                                 />
@@ -134,6 +136,7 @@ export function MejoravitPage() {
                                     id="nombre"
                                     type="text"
                                     placeholder="Ej. CALVO MORALES JUANA MARIA LUISA"
+                                    onFocus={(e) => e.target.select()}
                                     {...register("nombre")}
                                     className="border border-border-soft rounded-md px-3 py-1.5 text-sm uppercase focus:outline-none focus:ring-2 focus:ring-blue-btn w-full"
                                 />
@@ -149,7 +152,7 @@ export function MejoravitPage() {
                                 disabled={isSubmitting}
                                 className="bg-primary hover:opacity-90 disabled:opacity-60 text-white px-5 py-2 rounded-lg text-sm font-semibold transition-colors cursor-pointer"
                             >
-                                {editando ? "Guardar" : "Continuar →"}
+                                Guardar
                             </button>
                         </div>
                     </form>

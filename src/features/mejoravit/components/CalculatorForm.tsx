@@ -35,6 +35,7 @@ export function CalculatorForm() {
                         <input
                             type="number"
                             step="0.01"
+                            onFocus={(e) => e.target.select()}
                             {...register("valorMejora", { valueAsNumber: true })}
                             className="border border-border-soft rounded-md px-3 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-btn bg-white"
                         />
