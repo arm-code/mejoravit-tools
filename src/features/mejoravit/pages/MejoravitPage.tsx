@@ -64,7 +64,7 @@ export function MejoravitPage() {
                 <h1 className="text-primary font-bold text-2xl sm:text-3xl md:text-4xl tracking-tighter">
                     Mejoravit solo para ti
                 </h1>
-                {user && !editando && (
+                {!editando && (
                     <button
                         onClick={handleSalir}
                         className="text-blue-500 text-sm hover:underline underline font-bold shrink-0 ml-4"
