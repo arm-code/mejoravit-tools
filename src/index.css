@@ -1,5 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Inter", "Roboto", sans-serif;
+  --color-primary: #C62828;
+  --color-blue-btn: #1E73E8;
+  --color-text-primary: #333333;
+  --color-bg-light: #F5F5F5;
+  --color-alert-bg: #F8D7DA;
+  --color-alert-text: #842029;
+  --color-border-soft: #DDDDDD;
+}
 
-
-
+@layer base {
+  body {
+    @apply font-sans text-text-primary bg-white;
+  }
+}
