@@ -36,7 +36,24 @@ export function CalculatorForm() {
                             type="number"
                             step="0.01"
                             onFocus={(e) => e.target.select()}
-                            {...register("valorMejora", { valueAsNumber: true })}
+                            {...(() => {
+                                const { ref, onBlur, ...rest } = register("valorMejora", { valueAsNumber: true });
+                                return {
+                                    ...rest,
+                                    ref: (e: HTMLInputElement | null) => {
+                                        ref(e);
+                                        if (e && e.value && !document.activeElement?.isSameNode(e)) {
+                                            e.value = Number(e.value).toFixed(2);
+                                        }
+                                    },
+                                    onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
+                                        onBlur(e);
+                                        if (e.target.value) {
+                                            e.target.value = Number(e.target.value).toFixed(2);
+                                        }
+                                    }
+                                };
+                            })()}
                             className="border border-border-soft rounded-md px-3 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-btn bg-white"
                         />
                         {errors.valorMejora && (

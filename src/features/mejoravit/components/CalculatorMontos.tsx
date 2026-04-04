@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useMejoravit } from "../hooks/useMejoravit";
 
 export const CalculatorMontos = () => {
-    const [monto, setMonto] = useState<number | "">("");
+    const [monto, setMonto] = useState<number | string>("");
     const [resultado, setResultado] = useState<number | null>(null);
     const [copiado, setCopiado] = useState(false);
 
@@ -33,7 +33,7 @@ export const CalculatorMontos = () => {
 
     const handleUsarEnCredito = () => {
         if (resultado) {
-            updateForm({ ...form, valorMejora: resultado });
+            updateForm({ ...form, valorMejora: Number(resultado.toFixed(2)) });
             navigate("/calculadora");
         }
     };
@@ -49,7 +49,12 @@ export const CalculatorMontos = () => {
                         type="number"
                         step="0.01"
                         value={monto}
-                        onChange={(e) => setMonto(e.target.value ? Number(e.target.value) : "")}
+                        onChange={(e) => setMonto(e.target.value)}
+                        onBlur={(e) => {
+                            if (e.target.value) {
+                                setMonto(Number(e.target.value).toFixed(2));
+                            }
+                        }}
                         onFocus={(e) => e.target.select()}
                         placeholder="Ej. 50000"
                         className="border border-border-soft rounded-md px-3 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-btn bg-white"
