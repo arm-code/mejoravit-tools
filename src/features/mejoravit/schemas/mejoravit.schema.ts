@@ -3,7 +3,9 @@ import { z } from 'zod';
 export const calculatorSchema = z.object({
     valorMejora: z.number({
         message: "El valor es requerido y debe ser un número"
-    }).positive('El valor debe ser mayor a 0'),
+    })
+        .positive('El valor debe ser mayor a 0')
+        .max(169039, 'El límite máximo de préstamo es $169,039'),
 
     plazo: z.number({
         message: "El plazo es requerido y debe ser un número"
