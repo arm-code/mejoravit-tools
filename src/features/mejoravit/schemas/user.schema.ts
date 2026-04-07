@@ -10,8 +10,8 @@ export const userSchema = z.object({
         .string()
         .min(1, 'El RFC es requerido')
         .regex(
-            /^[A-ZÑ&]{3,4}\d{6}[A-Z\d]{3}$/i,
-            'El RFC no tiene el formato correcto (ej. RORR860708LE3)'
+            /^[A-ZÑ&]{3,4}\d{6}([A-Z\d]{3})?$/i,
+            'El RFC debe tener 10 o 13 caracteres (ej. RORR860708 o RORR860708LE3)'
         ),
 
     nombre: z
